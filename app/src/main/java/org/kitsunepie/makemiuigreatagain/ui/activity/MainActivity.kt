@@ -64,13 +64,15 @@ class MainActivity : ComponentActivity() {
                     onClick()
                 }
             }) {
-            Row {
+            Row(
+                Modifier
+                    .fillMaxWidth()
+                    .background(Color.White, RoundedCornerShape(13.dp))) {
                 Column(
                     modifier = Modifier
-                        .fillMaxWidth(0.85f)
+                        .fillMaxWidth(0.86f)
                         .height(50.dp)
-                        .background(Color.White, RoundedCornerShape(13.dp))
-                        .padding(horizontal = 15.dp),
+                        .padding(horizontal = 18.dp),
                     verticalArrangement = Arrangement.Center
                 ) {
                     Text(
@@ -93,7 +95,8 @@ class MainActivity : ComponentActivity() {
                         onChange?.invoke(it)
                     },
                     colors = SwitchDefaults.colors(
-                        checkedThumbColor = Blue200
+                        checkedThumbColor = Blue200,
+                        uncheckedTrackColor = Color.Gray
                     )
                 )
             }
@@ -103,10 +106,10 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     fun CardGroup(title: String, content: @Composable () -> Unit) {
-        Card(modifier = Modifier.padding(10.dp)) {
+        Card(modifier = Modifier.padding(8.dp), shape = RoundedCornerShape(13.dp)) {
             Column {
                 Text(
-                    modifier = Modifier.padding(start = 10.dp, top = 10.dp),
+                    modifier = Modifier.padding(start = 10.dp, top = 10.dp, bottom = 5.dp),
                     text = title,
                     color = Blue200,
                     fontSize = 20.sp
