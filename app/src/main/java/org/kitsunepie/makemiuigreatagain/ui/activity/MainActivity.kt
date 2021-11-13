@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Switch
+import androidx.compose.material.SwitchDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -88,6 +89,9 @@ class MainActivity : ComponentActivity() {
                         checked.value = it
                         onChange?.invoke(it)
                     },
+                    colors = SwitchDefaults.colors(
+                        checkedThumbColor = Blue200
+                    )
                 )
             }
         }
