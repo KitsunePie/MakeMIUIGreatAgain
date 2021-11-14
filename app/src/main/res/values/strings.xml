@@ -8,4 +8,9 @@
     <string name="module_version_title">Module version</string>
     <string name="jump_to_github_title">Browse on GitHub</string>
     <string name="jump_to_github_desc">One star plz!</string>
+    <string name="warning">WARNING</string>
+    <string name="error">ERROR</string>
+    <string name="hint">Hint</string>
+    <string name="config_load_failed_text">Cannot read configuration, make sure your scope includes systemui. In this case, no cahnges will be saved</string>
+    <string name="got_it">Got it</string>
 </resources>

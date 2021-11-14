@@ -8,4 +8,9 @@
     <string name="module_version_title">模块版本</string>
     <string name="jump_to_github_title">浏览项目</string>
     <string name="jump_to_github_desc">点个Star吧！</string>
+    <string name="warning">注意</string>
+    <string name="error">错误</string>
+    <string name="hint">提示</string>
+    <string name="config_load_failed_text">无法读取配置文件，请确保作用域勾选了系统框架。在这种情况下，你做的所有更改都不会被保存。</string>
+    <string name="got_it">我已知晓</string>
 </resources>

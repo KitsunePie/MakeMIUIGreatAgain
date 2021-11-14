@@ -7,14 +7,14 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import com.github.kyuubiran.ezxhelper.init.EzXHelperInit
-import com.github.kyuubiran.ezxhelper.utils.Log
-import com.github.kyuubiran.ezxhelper.utils.showToast
 import org.kitsunepie.makemiuigreatagain.BuildConfig
 import org.kitsunepie.makemiuigreatagain.R
 import org.kitsunepie.makemiuigreatagain.ui.theme.WhiteTheme
 import org.kitsunepie.makemiuigreatagain.ui.view.CardGroup
 import org.kitsunepie.makemiuigreatagain.ui.view.ClickableItem
+import org.kitsunepie.makemiuigreatagain.ui.view.Dialog
 import org.kitsunepie.makemiuigreatagain.ui.view.SwitchItem
+import org.kitsunepie.makemiuigreatagain.util.ConfigManager
 import org.kitsunepie.makemiuigreatagain.util.jumpUri
 
 class MainActivity : ComponentActivity() {
@@ -54,6 +54,13 @@ class MainActivity : ComponentActivity() {
         setContent {
             WhiteTheme {
                 MainUI()
+//                if (!ConfigManager.successLoad) {
+//                    Dialog(
+//                        title = R.string.warning,
+//                        text = R.string.config_load_failed_text,
+//                        dismissBtnString = R.string.got_it,
+//                    )
+//                }
             }
         }
     }
