@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">Make MIUI Great Again</string>
+    <string name="app_name" translatable="false">Make MIUI Great Again</string>
+    <string name="card_title_about">About</string>
+    <string name="card_title_gallery">Gallery</string>
+    <string name="card_title_systemui">System UI</string>
+    <string name="gallery_function_unlimited_crop">Unlimited crop</string>
+    <string name="gallery_function_unlimited_crop_desc">Unlimited crop size!</string>
 </resources>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="card_title_about">关于</string>
+    <string name="card_title_gallery">图库</string>
+    <string name="card_title_systemui">系统UI</string>
+    <string name="gallery_function_unlimited_crop">无限裁剪</string>
+    <string name="gallery_function_unlimited_crop_desc">无限制的裁剪大小！</string>
+</resources>
