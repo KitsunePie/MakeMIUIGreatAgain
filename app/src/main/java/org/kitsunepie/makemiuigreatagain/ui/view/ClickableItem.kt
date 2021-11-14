@@ -1,63 +1,52 @@
 package org.kitsunepie.makemiuigreatagain.ui.view
 
 import androidx.annotation.StringRes
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Switch
-import androidx.compose.material.SwitchDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import org.kitsunepie.makemiuigreatagain.ui.theme.Blue200
+import org.kitsunepie.makemiuigreatagain.R
 
 @Composable
-fun SwitchItem(
+fun ClickableItem(
     @StringRes title: Int,
-    @StringRes desc: Int? = null,
-    checked: MutableState<Boolean> = remember {
-        mutableStateOf(false)
-    },
-    onChange: ((Boolean) -> Unit)? = null,
+    @StringRes desc: Int?,
     onClick: (() -> Unit)? = null,
+    showArrow: Boolean = false
 ) {
-    SwitchItem(
+    ClickableItem(
         title = stringResource(title),
         desc = if (desc != null) stringResource(desc) else null,
-        checked = checked,
-        onChange = onChange,
-        onClick = onClick
+        onClick = onClick,
+        showArrow = showArrow
     )
 }
 
 @Composable
-fun SwitchItem(
+fun ClickableItem(
     title: String,
-    desc: String? = null,
-    checked: MutableState<Boolean> = remember {
-        mutableStateOf(false)
-    },
-    onChange: ((Boolean) -> Unit)? = null,
+    desc: String?,
     onClick: (() -> Unit)? = null,
+    showArrow: Boolean = false
 ) {
-    Box(modifier = Modifier
-        .fillMaxWidth()
-        .padding(3.dp)
-        .clickable {
-            if (onClick == null) {
-                checked.value = !checked.value
-            } else {
-                onClick()
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(3.dp)
+            .clickable {
+                onClick?.invoke()
             }
-        }) {
+    ) {
         Row(
             Modifier
                 .fillMaxWidth()
@@ -83,17 +72,21 @@ fun SwitchItem(
                     )
                 }
             }
-            Switch(
-                checked = checked.value,
-                onCheckedChange = {
-                    checked.value = it
-                    onChange?.invoke(it)
-                },
-                colors = SwitchDefaults.colors(
-                    checkedThumbColor = Blue200,
-                    uncheckedTrackColor = Color.Gray
-                )
-            )
+            if (showArrow) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(45.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Image(
+                        modifier = Modifier.wrapContentSize(),
+                        painter = painterResource(R.drawable.ic_baseline_arrow_forward_ios_12),
+                        contentDescription = null,
+                        alpha = 0.40f
+                    )
+                }
+            }
         }
     }
 }

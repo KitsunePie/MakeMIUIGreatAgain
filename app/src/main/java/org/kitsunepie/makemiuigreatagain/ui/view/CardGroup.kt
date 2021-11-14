@@ -2,6 +2,8 @@ package org.kitsunepie.makemiuigreatagain.ui.view
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
@@ -20,10 +22,16 @@ fun CardGroup(@StringRes title: Int, content: @Composable () -> Unit) {
 
 @Composable
 fun CardGroup(title: String, content: @Composable () -> Unit) {
-    Card(modifier = Modifier.padding(8.dp), shape = RoundedCornerShape(13.dp)) {
+    Card(
+        modifier = Modifier
+            .padding(8.dp)
+            .fillMaxWidth()
+            .defaultMinSize(minHeight = 30.dp),
+        shape = RoundedCornerShape(13.dp)
+    ) {
         Column {
             Text(
-                modifier = Modifier.padding(start = 10.dp, top = 10.dp, bottom = 5.dp),
+                modifier = Modifier.padding(start = 10.dp, top = 10.dp),
                 text = title,
                 color = Blue200,
                 fontSize = 20.sp

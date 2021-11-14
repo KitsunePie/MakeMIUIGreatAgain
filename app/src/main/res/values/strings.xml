@@ -5,4 +5,7 @@
     <string name="card_title_systemui">System UI</string>
     <string name="gallery_function_unlimited_crop">Unlimited crop</string>
     <string name="gallery_function_unlimited_crop_desc">Unlimited crop size!</string>
+    <string name="module_version_title">Module version</string>
+    <string name="jump_to_github_title">Browse on GitHub</string>
+    <string name="jump_to_github_desc">One star plz!</string>
 </resources>
