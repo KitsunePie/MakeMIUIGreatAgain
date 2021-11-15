@@ -28,7 +28,7 @@ fun Dialog(
 ) {
     Dialog(
         title = stringResource(id = title),
-        content = { Text(text = stringResource(id = text), color = Color.Black, fontSize = 18.sp) },
+        content = { Text(text = stringResource(id = text), color = Color.Black, fontSize = 16.sp) },
         showable = showable,
         confirmBtnTitle = if (confirmBtnTitle != null) stringResource(id = confirmBtnTitle) else null,
         confirm = confirm,
@@ -85,7 +85,7 @@ fun Dialog(
             onDismissRequest = {
                 dismissRequest?.invoke(showable)
             },
-            title = { Text(text = title, color = Color.Black) },
+            title = { Text(text = title, color = Color.Black, fontSize = 20.sp) },
             text = { content?.invoke() },
             confirmButton = {
                 confirmBtnTitle?.let {
