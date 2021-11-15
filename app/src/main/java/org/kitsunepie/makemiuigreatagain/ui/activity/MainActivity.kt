@@ -8,12 +8,12 @@ import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.github.kyuubiran.ezxhelper.init.EzXHelperInit
 import org.kitsunepie.makemiuigreatagain.R
-import org.kitsunepie.makemiuigreatagain.ui.theme.WhiteTheme
 import org.kitsunepie.makemiuigreatagain.ui.view.*
 import org.kitsunepie.makemiuigreatagain.util.ConfigManager
 import org.kitsunepie.makemiuigreatagain.util.jumpUri
@@ -30,7 +30,7 @@ class MainActivity : ComponentActivity() {
                 orientation = Orientation.Vertical
             )
         ) {
-            Title(text = stringResource(id = R.string.app_name))
+            AppBar(text = stringResource(id = R.string.app_name))
             ModuleStatusBar(ConfigManager.successLoad)
 
             CardGroup(title = R.string.card_title_gallery) {
@@ -67,7 +67,7 @@ class MainActivity : ComponentActivity() {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         EzXHelperInit.initAppContext(applicationContext)
         setContent {
-            WhiteTheme {
+            MaterialTheme {
                 MainUI()
                 if (!ConfigManager.successLoad) {
                     Dialog(

@@ -1,14 +1,16 @@
 package org.kitsunepie.makemiuigreatagain.ui.view
 
 import androidx.annotation.StringRes
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.AlertDialog
 import androidx.compose.material.Button
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.DialogProperties
@@ -28,7 +30,11 @@ fun Dialog(
 ) {
     Dialog(
         title = stringResource(id = title),
-        content = { Text(text = stringResource(id = text), color = Color.Black, fontSize = 16.sp) },
+        content = {
+            Surface(modifier = Modifier.wrapContentSize()) {
+                Text(text = stringResource(id = text), fontSize = 16.sp)
+            }
+        },
         showable = showable,
         confirmBtnTitle = if (confirmBtnTitle != null) stringResource(id = confirmBtnTitle) else null,
         confirm = confirm,
@@ -55,7 +61,7 @@ fun Dialog(
 ) {
     Dialog(
         title = title,
-        content = { Text(text = text, color = Color.Black) },
+        content = { Text(text = text) },
         showable = showable,
         confirmBtnTitle = if (confirmBtnTitle != null) stringResource(id = confirmBtnTitle) else null,
         confirm = confirm,
@@ -85,7 +91,14 @@ fun Dialog(
             onDismissRequest = {
                 dismissRequest?.invoke(showable)
             },
-            title = { Text(text = title, color = Color.Black, fontSize = 20.sp) },
+            title = {
+                Surface {
+                    Text(
+                        text = title,
+                        fontSize = 20.sp
+                    )
+                }
+            },
             text = { content?.invoke() },
             confirmButton = {
                 confirmBtnTitle?.let {
@@ -94,7 +107,7 @@ fun Dialog(
                             confirm?.invoke(showable)
                             if (clickToDismiss) showable.value = false
                         }) {
-                        Text(text = it, color = Color.Black)
+                        Text(text = it)
                     }
                 }
             },
@@ -105,7 +118,7 @@ fun Dialog(
                             dismiss?.invoke(showable)
                             if (clickToDismiss) showable.value = false
                         }) {
-                        Text(text = it, color = Color.Black)
+                        Text(text = it)
                     }
                 }
             }, properties = properties

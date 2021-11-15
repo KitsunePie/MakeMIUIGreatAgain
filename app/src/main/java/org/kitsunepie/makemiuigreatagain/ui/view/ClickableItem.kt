@@ -2,10 +2,9 @@ package org.kitsunepie.makemiuigreatagain.ui.view
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -13,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.kitsunepie.makemiuigreatagain.R
@@ -20,7 +20,7 @@ import org.kitsunepie.makemiuigreatagain.R
 @Composable
 fun ClickableItem(
     @StringRes title: Int,
-    @StringRes desc: Int?,
+    @StringRes desc: Int? = null,
     onClick: (() -> Unit)? = null,
     showArrow: Boolean = false
 ) {
@@ -35,7 +35,7 @@ fun ClickableItem(
 @Composable
 fun ClickableItem(
     title: String,
-    desc: String?,
+    desc: String? = null,
     onClick: (() -> Unit)? = null,
     showArrow: Boolean = false
 ) {
@@ -47,11 +47,7 @@ fun ClickableItem(
                 onClick?.invoke()
             }
     ) {
-        Row(
-            Modifier
-                .fillMaxWidth()
-                .background(Color.White, RoundedCornerShape(13.dp))
-        ) {
+        Row(modifier = Modifier.fillMaxWidth()) {
             Column(
                 modifier = Modifier
                     .fillMaxWidth(0.86f)
@@ -59,11 +55,12 @@ fun ClickableItem(
                     .padding(horizontal = 18.dp),
                 verticalArrangement = Arrangement.Center
             ) {
-                Text(
-                    text = title,
-                    color = Color.Black,
-                    fontSize = 18.sp
-                )
+                Surface {
+                    Text(
+                        text = title,
+                        fontSize = 18.sp
+                    )
+                }
                 desc?.let {
                     Text(
                         text = desc,
@@ -88,5 +85,14 @@ fun ClickableItem(
                 }
             }
         }
+    }
+}
+
+@Preview
+@Composable
+private fun View() {
+    Column(modifier = Modifier.fillMaxWidth()) {
+        ClickableItem(title = "测试物品1", desc = "测试测试")
+        ClickableItem(title = "测试物品2")
     }
 }

@@ -1,10 +1,9 @@
 package org.kitsunepie.makemiuigreatagain.ui.view
 
 import androidx.annotation.StringRes
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Surface
 import androidx.compose.material.Switch
 import androidx.compose.material.SwitchDefaults
 import androidx.compose.material.Text
@@ -58,11 +57,7 @@ fun SwitchItem(
                 onClick()
             }
         }) {
-        Row(
-            Modifier
-                .fillMaxWidth()
-                .background(Color.White, RoundedCornerShape(13.dp))
-        ) {
+        Row(modifier = Modifier.fillMaxWidth()) {
             Column(
                 modifier = Modifier
                     .fillMaxWidth(0.86f)
@@ -70,11 +65,13 @@ fun SwitchItem(
                     .padding(horizontal = 18.dp),
                 verticalArrangement = Arrangement.Center
             ) {
-                Text(
-                    text = title,
-                    color = Color.Black,
-                    fontSize = 18.sp
-                )
+                Surface {
+                    Text(
+                        text = title,
+                        fontSize = 18.sp
+                    )
+                }
+
                 desc?.let {
                     Text(
                         text = desc,
