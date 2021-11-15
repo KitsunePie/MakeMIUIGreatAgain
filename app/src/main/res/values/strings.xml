@@ -18,4 +18,5 @@
     <string name="xposed_desc">Make MIUI great again!!</string>
     <string name="jump_to_telegram_channel_title">Telegram Channel</string>
     <string name="jump_to_telegram_channel_desc">Follow the updates!</string>
+    <string name="dont_remind_again">Do not remind again</string>
 </resources>

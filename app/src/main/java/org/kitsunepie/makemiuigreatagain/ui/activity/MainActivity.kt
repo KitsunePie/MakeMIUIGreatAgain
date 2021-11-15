@@ -12,11 +12,11 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import com.github.kyuubiran.ezxhelper.init.EzXHelperInit
 import org.kitsunepie.makemiuigreatagain.R
 import org.kitsunepie.makemiuigreatagain.ui.view.*
 import org.kitsunepie.makemiuigreatagain.util.ConfigManager
 import org.kitsunepie.makemiuigreatagain.util.jumpUri
+import org.kitsunepie.makemiuigreatagain.util.sAppContext
 
 class MainActivity : ComponentActivity() {
 
@@ -31,7 +31,7 @@ class MainActivity : ComponentActivity() {
             )
         ) {
             AppBar(text = stringResource(id = R.string.app_name))
-            ModuleStatusBar(ConfigManager.successLoad)
+            ModuleStatusBar(ConfigManager.ModuleSettings.successLoad)
 
             CardGroup(title = R.string.card_title_gallery) {
                 SwitchItem(
@@ -65,15 +65,17 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         @Suppress("Deprecation")
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-        EzXHelperInit.initAppContext(applicationContext)
+        sAppContext = applicationContext
         setContent {
             MaterialTheme {
                 MainUI()
-                if (!ConfigManager.successLoad) {
+                if (!ConfigManager.ModuleSettings.successLoad && ConfigManager.AppSettings.inactiveDialog) {
                     Dialog(
                         title = R.string.warning,
                         text = R.string.config_load_failed_text,
-                        dismissBtnString = R.string.got_it,
+                        confirmBtnTitle = R.string.got_it,
+                        dismissBtnString = R.string.dont_remind_again,
+                        dismiss = { ConfigManager.AppSettings.inactiveDialog = false }
                     )
                 }
             }

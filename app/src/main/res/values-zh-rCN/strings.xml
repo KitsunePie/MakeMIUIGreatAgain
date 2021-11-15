@@ -18,4 +18,5 @@
     <string name="xposed_desc">让MIUI再次强大！！</string>
     <string name="jump_to_telegram_channel_title">Telegram频道</string>
     <string name="jump_to_telegram_channel_desc">关注更新！</string>
+    <string name="dont_remind_again">不再提示</string>
 </resources>
