@@ -10,6 +10,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.DialogProperties
 
 @Composable
@@ -17,6 +18,7 @@ fun Dialog(
     @StringRes title: Int,
     @StringRes text: Int,
     @StringRes confirmBtnTitle: Int? = null,
+    showable: MutableState<Boolean> = remember { mutableStateOf(true) },
     confirm: ((MutableState<Boolean>) -> Unit)? = null,
     @StringRes dismissBtnString: Int? = null,
     dismiss: ((MutableState<Boolean>) -> Unit)? = null,
@@ -26,7 +28,8 @@ fun Dialog(
 ) {
     Dialog(
         title = stringResource(id = title),
-        text = stringResource(id = text),
+        content = { Text(text = stringResource(id = text), color = Color.Black, fontSize = 18.sp) },
+        showable = showable,
         confirmBtnTitle = if (confirmBtnTitle != null) stringResource(id = confirmBtnTitle) else null,
         confirm = confirm,
         dismissBtnString = if (dismissBtnString != null) stringResource(id = dismissBtnString) else null,
@@ -41,6 +44,34 @@ fun Dialog(
 fun Dialog(
     title: String,
     text: String,
+    @StringRes confirmBtnTitle: Int? = null,
+    showable: MutableState<Boolean> = remember { mutableStateOf(true) },
+    confirm: ((MutableState<Boolean>) -> Unit)? = null,
+    @StringRes dismissBtnString: Int? = null,
+    dismiss: ((MutableState<Boolean>) -> Unit)? = null,
+    dismissRequest: ((MutableState<Boolean>) -> Unit)? = null,
+    clickToDismiss: Boolean = true,
+    properties: DialogProperties = DialogProperties()
+) {
+    Dialog(
+        title = title,
+        content = { Text(text = text, color = Color.Black) },
+        showable = showable,
+        confirmBtnTitle = if (confirmBtnTitle != null) stringResource(id = confirmBtnTitle) else null,
+        confirm = confirm,
+        dismissBtnString = if (dismissBtnString != null) stringResource(id = dismissBtnString) else null,
+        dismiss = dismiss,
+        dismissRequest = dismissRequest,
+        clickToDismiss = clickToDismiss,
+        properties = properties
+    )
+}
+
+@Composable
+fun Dialog(
+    title: String,
+    content: @Composable (() -> Unit)? = null,
+    showable: MutableState<Boolean> = remember { mutableStateOf(true) },
     confirmBtnTitle: String? = null,
     confirm: ((MutableState<Boolean>) -> Unit)? = null,
     dismissBtnString: String? = null,
@@ -49,21 +80,19 @@ fun Dialog(
     clickToDismiss: Boolean = true,
     properties: DialogProperties = DialogProperties()
 ) {
-    val show = remember { mutableStateOf(true) }
-
-    if (show.value) {
+    if (showable.value) {
         AlertDialog(
             onDismissRequest = {
-                dismissRequest?.invoke(show)
+                dismissRequest?.invoke(showable)
             },
             title = { Text(text = title, color = Color.Black) },
-            text = { Text(text = text, color = Color.Black) },
+            text = { content?.invoke() },
             confirmButton = {
                 confirmBtnTitle?.let {
                     Button(
                         onClick = {
-                            confirm?.invoke(show)
-                            if (clickToDismiss) show.value = false
+                            confirm?.invoke(showable)
+                            if (clickToDismiss) showable.value = false
                         }) {
                         Text(text = it, color = Color.Black)
                     }
@@ -73,8 +102,8 @@ fun Dialog(
                 dismissBtnString?.let {
                     Button(
                         onClick = {
-                            dismiss?.invoke(show)
-                            if (clickToDismiss) show.value = false
+                            dismiss?.invoke(showable)
+                            if (clickToDismiss) showable.value = false
                         }) {
                         Text(text = it, color = Color.Black)
                     }

@@ -11,6 +11,11 @@
     <string name="warning">WARNING</string>
     <string name="error">ERROR</string>
     <string name="hint">Hint</string>
-    <string name="config_load_failed_text">Cannot read configuration, make sure your scope includes systemui. In this case, no cahnges will be saved</string>
+    <string name="config_load_failed_text">Cannot read configuration, make sure your scope includes system framework. In this case, no cahnges will be saved.</string>
     <string name="got_it">Got it</string>
+    <string name="activated">Activated</string>
+    <string name="inactivated">Inactivated</string>
+    <string name="xposed_desc">Make MIUI great again!!</string>
+    <string name="jump_to_telegram_channel_title">Telegram Channel</string>
+    <string name="jump_to_telegram_channel_desc">Follow the updates!</string>
 </resources>

@@ -26,7 +26,7 @@
             android:value="true" />
         <meta-data
             android:name="xposeddescription"
-            android:value="让MIUI再次强大！" />
+            android:value="@string/xposed_desc" />
         <meta-data
             android:name="xposedminversion"
             android:value="54" />

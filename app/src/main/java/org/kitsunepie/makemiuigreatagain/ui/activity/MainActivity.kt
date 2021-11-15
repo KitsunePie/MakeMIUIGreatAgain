@@ -4,16 +4,17 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import com.github.kyuubiran.ezxhelper.init.EzXHelperInit
-import org.kitsunepie.makemiuigreatagain.BuildConfig
 import org.kitsunepie.makemiuigreatagain.R
 import org.kitsunepie.makemiuigreatagain.ui.theme.WhiteTheme
-import org.kitsunepie.makemiuigreatagain.ui.view.CardGroup
-import org.kitsunepie.makemiuigreatagain.ui.view.ClickableItem
-import org.kitsunepie.makemiuigreatagain.ui.view.Dialog
-import org.kitsunepie.makemiuigreatagain.ui.view.SwitchItem
+import org.kitsunepie.makemiuigreatagain.ui.view.*
 import org.kitsunepie.makemiuigreatagain.util.ConfigManager
 import org.kitsunepie.makemiuigreatagain.util.jumpUri
 
@@ -21,7 +22,17 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     fun MainUI() {
-        Column {
+        val scroller = rememberScrollState()
+
+        Column(
+            modifier = Modifier.scrollable(
+                state = scroller,
+                orientation = Orientation.Vertical
+            )
+        ) {
+            Title(text = stringResource(id = R.string.app_name))
+            ModuleStatusBar(ConfigManager.successLoad)
+
             CardGroup(title = R.string.card_title_gallery) {
                 SwitchItem(
                     title = R.string.gallery_function_unlimited_crop,
@@ -31,14 +42,18 @@ class MainActivity : ComponentActivity() {
 
             CardGroup(title = R.string.card_title_about) {
                 ClickableItem(
-                    title = getString(R.string.module_version_title),
-                    desc = "${BuildConfig.VERSION_NAME}(${BuildConfig.VERSION_CODE})",
-                )
-                ClickableItem(
                     title = R.string.jump_to_github_title,
                     desc = R.string.jump_to_github_desc,
                     onClick = {
                         jumpUri("https://github.com/KitsunePie/MakeMIUIGreatAgain")
+                    },
+                    showArrow = true
+                )
+                ClickableItem(
+                    title = R.string.jump_to_telegram_channel_title,
+                    desc = R.string.jump_to_telegram_channel_desc,
+                    onClick = {
+                        jumpUri("https://t.me/MakeMIUIGreatAgain")
                     },
                     showArrow = true
                 )
@@ -54,13 +69,13 @@ class MainActivity : ComponentActivity() {
         setContent {
             WhiteTheme {
                 MainUI()
-//                if (!ConfigManager.successLoad) {
-//                    Dialog(
-//                        title = R.string.warning,
-//                        text = R.string.config_load_failed_text,
-//                        dismissBtnString = R.string.got_it,
-//                    )
-//                }
+                if (!ConfigManager.successLoad) {
+                    Dialog(
+                        title = R.string.warning,
+                        text = R.string.config_load_failed_text,
+                        dismissBtnString = R.string.got_it,
+                    )
+                }
             }
         }
     }

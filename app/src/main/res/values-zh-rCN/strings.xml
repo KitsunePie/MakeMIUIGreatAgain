@@ -13,4 +13,9 @@
     <string name="hint">提示</string>
     <string name="config_load_failed_text">无法读取配置文件，请确保作用域勾选了系统框架。在这种情况下，你做的所有更改都不会被保存。</string>
     <string name="got_it">我已知晓</string>
+    <string name="activated">已激活</string>
+    <string name="inactivated">未激活</string>
+    <string name="xposed_desc">让MIUI再次强大！！</string>
+    <string name="jump_to_telegram_channel_title">Telegram频道</string>
+    <string name="jump_to_telegram_channel_desc">关注更新！</string>
 </resources>
