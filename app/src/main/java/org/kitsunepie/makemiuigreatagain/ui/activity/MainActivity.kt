@@ -12,6 +12,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import com.github.kyuubiran.ezxhelper.init.EzXHelperInit
 import org.kitsunepie.makemiuigreatagain.R
 import org.kitsunepie.makemiuigreatagain.ui.view.*
 import org.kitsunepie.makemiuigreatagain.util.ConfigManager
@@ -66,6 +67,9 @@ class MainActivity : ComponentActivity() {
         @Suppress("Deprecation")
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         sAppContext = applicationContext
+
+        EzXHelperInit.setLogTag("MMGA")
+
         setContent {
             MaterialTheme {
                 MainUI()

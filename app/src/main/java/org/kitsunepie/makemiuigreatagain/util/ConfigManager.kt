@@ -1,6 +1,7 @@
 package org.kitsunepie.makemiuigreatagain.util
 
 import android.content.Context
+import com.github.kyuubiran.ezxhelper.utils.tryOrFalse
 
 object ConfigManager {
     object AppSettings {
@@ -63,7 +64,10 @@ object ConfigManager {
     }
 
     object ModuleSettings {
-        var successLoad: Boolean = false
-            private set
+        val successLoad by lazy { tryOrFalse { init() } }
+
+        private fun init() {
+
+        }
     }
 }
