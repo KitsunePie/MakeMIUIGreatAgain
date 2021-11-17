@@ -5,12 +5,17 @@ import com.github.kyuubiran.ezxhelper.utils.Log
 import de.robv.android.xposed.IXposedHookLoadPackage
 import de.robv.android.xposed.callbacks.XC_LoadPackage
 import org.kitsunepie.makemiuigreatagain.hook.BaseHook
+import org.kitsunepie.makemiuigreatagain.hook.BinderHook
 import org.kitsunepie.makemiuigreatagain.hook.gallery.CropSizeHook
 
 class Entry : IXposedHookLoadPackage {
 
     override fun handleLoadPackage(lpparam: XC_LoadPackage.LoadPackageParam) {
         when (lpparam.packageName) {
+            "android" -> {
+                initUtils(lpparam)
+                initHooks(BinderHook)
+            }
             "com.miui.gallery" -> {
                 initUtils(lpparam)
                 initHooks(CropSizeHook)
