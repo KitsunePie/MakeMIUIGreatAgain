@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Make MIUI Great Again"
 include ':app'
+include ':stub'

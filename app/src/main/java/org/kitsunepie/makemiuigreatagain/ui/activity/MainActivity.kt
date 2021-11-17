@@ -1,6 +1,7 @@
 package org.kitsunepie.makemiuigreatagain.ui.activity
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -15,6 +16,7 @@ import androidx.compose.ui.res.stringResource
 import org.kitsunepie.makemiuigreatagain.R
 import org.kitsunepie.makemiuigreatagain.ui.view.*
 import org.kitsunepie.makemiuigreatagain.util.ConfigManager
+import org.kitsunepie.makemiuigreatagain.util.ServiceClient
 import org.kitsunepie.makemiuigreatagain.util.jumpUri
 import org.kitsunepie.makemiuigreatagain.util.sAppContext
 
@@ -78,7 +80,14 @@ class MainActivity : ComponentActivity() {
                         dismiss = { ConfigManager.AppSettings.inactiveDialog = false }
                     )
                 }
+                test()
             }
         }
+    }
+
+    private fun test() {
+        val service = ServiceClient.service!!
+        val versionCode = service.getversionCode()
+        Log.i("MakeMIUIGreatAgain", "versionCode = $versionCode")
     }
 }
