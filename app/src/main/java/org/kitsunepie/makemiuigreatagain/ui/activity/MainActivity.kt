@@ -1,7 +1,6 @@
 package org.kitsunepie.makemiuigreatagain.ui.activity
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -14,10 +13,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.github.kyuubiran.ezxhelper.init.EzXHelperInit
+import com.github.kyuubiran.ezxhelper.utils.Log
+import com.github.kyuubiran.ezxhelper.utils.showToast
 import org.kitsunepie.makemiuigreatagain.R
 import org.kitsunepie.makemiuigreatagain.ui.view.*
 import org.kitsunepie.makemiuigreatagain.util.ConfigManager
-import org.kitsunepie.makemiuigreatagain.util.ServiceClient
+import org.kitsunepie.makemiuigreatagain.util.ServiceClient.service
 import org.kitsunepie.makemiuigreatagain.util.jumpUri
 import org.kitsunepie.makemiuigreatagain.util.sAppContext
 
@@ -90,8 +91,11 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun test() {
-        val service = ServiceClient.service!!
-        val versionCode = service.getversionCode()
-        Log.i("MakeMIUIGreatAgain", "versionCode = $versionCode")
+        service?.let {
+            val versionCode = it.getversionCode()
+            Log.i("versionCode = $versionCode")
+        } ?: run {
+            this.showToast(getString(R.string.config_load_failed_text))
+        }
     }
 }

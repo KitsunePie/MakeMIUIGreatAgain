@@ -2,7 +2,7 @@ package org.kitsunepie.makemiuigreatagain.hook
 
 import android.os.Binder
 import android.os.Parcel
-import com.github.kyuubiran.ezxhelper.utils.findMethodByCondition
+import com.github.kyuubiran.ezxhelper.utils.findMethod
 import com.github.kyuubiran.ezxhelper.utils.hookBefore
 import org.kitsunepie.makemiuigreatagain.service.MMGAService
 import org.kitsunepie.makemiuigreatagain.util.BRIDGE_ACTION_GET_BINDER
@@ -14,7 +14,7 @@ object BinderHook : BaseHook() {
     override val enabled = true
 
     override fun initHook() {
-        findMethodByCondition(Binder::class.java) { "onTransact" == it.name }
+        findMethod(Binder::class.java) { "onTransact" == name }
             .hookBefore {
                 val code = it.args[0] as Int
                 val data = it.args[1] as Parcel
@@ -39,5 +39,4 @@ object BinderHook : BaseHook() {
             }
         }
     }
-
 }
